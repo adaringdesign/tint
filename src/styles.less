@@ -1,8 +1,58 @@
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+:not(input):not(textarea),
+:not(input):not(textarea)::after,
+:not(input):not(textarea)::before {
+	-webkit-user-select: none;
+	user-select: none;
+	cursor: default;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
+	font: caption;
+}
+
+#picker {
+	height: 240px;
+}
+#spectrum:before{
+    /*content: 'Coppied';*/
+    content: ' ';
+    position: absolute;
+    display: inline-block;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    z-index: 99;
+    transform: translate(-50%, -50%);
+    font: caption;
+    font-weight: 600;
+    font-size: 30px;
+    transition: opacity 0.1s ease-in;
+    pointer-events: none;
+}
+#spectrum.flash:before{
+    /*content: 'Coppied';*/
+    content: '\2318 V';
+    position: absolute;
+    display: inline-block;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    z-index: 99;
+    transform: translate(-50%, -50%);
+    font: caption;
+    font-weight: 600;
+    font-size: 30px;
+    transition: opacity 0.3s ease-in;
+    pointer-events: none;
+}
+#swatch {
+	cursor: pointer;
 }
