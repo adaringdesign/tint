@@ -2,7 +2,7 @@
 
 **NOTE: This is currently in beta and may break! If it does, please create an issue!**
 
-A not-so-sucky color picker status bar for OSX, Windows and Linux.
+A not-so-sucky color picker status bar for OSX.
 
 ![](http://cl.ly/drFw/Screen%20Shot%202015-11-18%20at%201.56.51%20PM.png)
 
