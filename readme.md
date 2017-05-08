@@ -4,22 +4,26 @@
 
 A not-so-sucky color picker status bar for OSX.
 
-![](http://cl.ly/drFw/Screen%20Shot%202015-11-18%20at%201.56.51%20PM.png)
+![](https://raw.githubusercontent.com/adaringdesign/tint/master/Screen.png)
 
-A global shortcut to open the color picker is set to `Shift + Command + c` on Mac and `Shift + Control + c` on Windows.
+A local shortcut to open the color picker is set to `Command + c`
 
 
 ## Download
 
-**[Download the latest release here](https://github.com/danawoodman/tint/releases)**
+**[Download the latest release here](https://github.com/adaringdesign/tint/releases)**
+
 
 
 ## Features
 
 - Support opacity and hue.
-- Global shortcut (`ctrl+alt+super+c`).
+- Supports HEX, RGBA and HSLA.
+- Local shortcut (`command + c`) to copy color value.
+- Supports Dark Mode.
 
 Something else you'd like to see? Create an issue!
+
 
 
 ## Development
@@ -45,8 +49,17 @@ npm install
 
 ```shell
 # Install electron
-npm install --global electron-prebuilt
+npm install --global electron
 ```
+
+Don't install electron-prebuild! Please see [Stackoverflow](http://stackoverflow.com/questions/41574586/what-is-the-difference-between-electron-and-electron-prebuilt) for an explaination why. 
+
+- Dependencies:
+```shell
+# Install dependencies prior to running
+npm install
+```
+
 
 
 ### Run
@@ -63,20 +76,33 @@ npm start
 Build a `Tint.app` file:
 
 ```shell
-npm run build
+npm run package
 ```
 
 ### Regenerate the Icon
 
-Create a new `Tint.icns` file by running the following script:
+~~Create a new `Tint.icns` file by running the following script:~~
+
+This will be removed in next commits as it's no longer needed..
 
 ```shell
 ./scripts/make-icon
 ```
 
 
+
+## To Do:
+
+- [ ] Minor ui fixes
+- [ ] Add input shortcut (`Command + V`)
+- [ ] Add preferences dialog
+
+
+
 ## Credits
 
-Created by Dana Woodman 2015. Released under an MIT license.
+Updated by Rutger Valk-van de Klundert © 2017. Released under an MIT license.
+
+Started by Dana Woodman in < 2015.
 
 Icon "tint" by useiconic.com from the Noun Project.
