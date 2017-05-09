@@ -96,6 +96,18 @@ This will be removed in next commits as it's no longer needed..
 - [ ] Minor ui fixes
 - [ ] Add input shortcut (`Command + V`)
 - [ ] Add preferences dialog
+- [ ] Fix **React-color** modification/~~hack~~
+
+
+
+
+## Known issues
+
+- **React-color** module is modified modification/~~hack~~.
+  - A main dependency is the **React-color** module, in the current release this module includes a custom modification to make it suite my needs. Please keep in mind that this modified version is currently not included within this repo as it resambles a rather dirty hack and needs to get implemented properly first!
+- No blur event triggered on `esc`
+  - Reason: no shortcut has been implemented yet.
+
 
 
 
