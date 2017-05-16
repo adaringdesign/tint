@@ -51,7 +51,6 @@
     "electron-localshortcut": "^1.1.1",
     "electron-positioner": "^3.0.0",
     "electron-settings": "^3.0.14",
-    "extend": "3.0.0",
     "react": "0.14.2",
     "react-color": "^1.2.1",
     "react-dom": "0.14.2"

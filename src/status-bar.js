@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const extend = require('extend')
-const events = require('events')
+
 const electron = require('electron')
 const Positioner = require('electron-positioner')
 
