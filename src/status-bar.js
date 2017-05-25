@@ -4,6 +4,8 @@ const path = require('path')
 const electron = require('electron')
 const Positioner = require('electron-positioner')
 
+const isDev = require('isdev')
+
 const electronLocalshortcut = require('electron-localshortcut');
 const {webContents} = require('electron')
 
@@ -11,7 +13,7 @@ const BrowserWindow = electron.BrowserWindow
 const Menu = electron.Menu
 const Tray = electron.Tray
 
-const HEIGHT = 240
+const HEIGHT = 271
 const WIDTH = 225
 const ROOT = __dirname
 const INDEX = path.join(ROOT, 'index.html')
@@ -52,6 +54,10 @@ function createWindow() {
 
   electronLocalshortcut.register(window, 'Cmd+C', (event) => {
     webContents.getFocusedWebContents().send('copy')
+  });
+
+  electronLocalshortcut.register(window, 'Cmd+V', (event) => {
+    webContents.getFocusedWebContents().send('paste')
   });
 
   return window
@@ -101,9 +107,6 @@ module.exports = (app) => {
     // Load passed in bounds or fallback to cached bounds.
     statusbar.bounds = bounds || statusbar.bounds
 
-    // console.log('Showing window at bounds:')
-    // console.log(JSON.stringify(statusbar.bounds, null, '  '))
-
     const positioner = new Positioner(statusbar.window)
 
     const position = positioner.calculate('trayCenter', statusbar.bounds)
@@ -111,17 +114,19 @@ module.exports = (app) => {
     const x = position.x || 0
     const y = position.y || 0
 
-    // console.log(`Setting window position to: ${x} x by ${y} y`)
-
     statusbar.window.setPosition(x, y)
 
     statusbar.window.show()
+
     statusbar.tray.setHighlightMode('always')
   }
 
   statusbar.hide = () => {
-    statusbar.window.hide()
-    statusbar.tray.setHighlightMode('never')
+
+    if (!isDev){
+      statusbar.window.hide()
+      statusbar.tray.setHighlightMode('never')
+    }
   }
 
   statusbar.quit = () => {
@@ -131,8 +136,6 @@ module.exports = (app) => {
   }
 
   statusbar.toggleWindow = (bounds) => {
-
-    // console.log(`Tray clicked and window is ${statusbar.window.isVisible() ? 'visible' : 'hidden'}`)
 
     if (statusbar.window && statusbar.window.isVisible()) {
       return statusbar.hide()
@@ -159,6 +162,13 @@ module.exports = (app) => {
   statusbar.tray.on('right-click', (e, bounds) => {
     statusbar.menu.popup(statusbar.window)
   })
+
+  electronLocalshortcut.register(window, 'Esc', (event) => {
+    statusbar.window.hide()
+    statusbar.tray.setHighlightMode('never')
+  });
+
+
   return statusbar
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "tint",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Menu bar (status menu) color picker for OSX. Updated & modified by A Daring Design",
   "main": "src/main.js",
   "scripts": {
@@ -39,6 +39,7 @@
   },
   "homepage": "https://www.adaringdesign.nl/",
   "devDependencies": {
+    "isdev": "^1.0.1",
     "babel-cli": "6.1.18",
     "babel-plugin-syntax-jsx": "6.1.18",
     "babel-plugin-transform-react-jsx": "6.1.18",
@@ -51,8 +52,10 @@
     "electron-localshortcut": "^1.1.1",
     "electron-positioner": "^3.0.0",
     "electron-settings": "^3.0.14",
+    "jquery": "^3.2.1",
     "react": "0.14.2",
     "react-color": "^1.2.1",
-    "react-dom": "0.14.2"
+    "react-dom": "0.14.2",
+    "spectrum-colorpicker": "github:bgrins/spectrum"
   }
 }

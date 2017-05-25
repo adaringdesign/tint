@@ -2,10 +2,40 @@
 <html>
   <head>
     <title>Hello World!</title>
-    <link rel='stylesheet' href='styles.less'>
+    <link rel='stylesheet' href='./style/styles.css'>
+    <link rel='stylesheet' href='./style/spectrum.custom.css'>
   </head>
   <body>
     <div id='picker'></div>
-    <script src='build.js'></script>
+    <!-- <input type="text" name="ouput" id="output"> -->
+    <script src='web.js'></script>
+    <script type="text/javascript">
+        
+jQuery("#picker").spectrum({
+  showAlpha: true,
+  flat: true,
+  showInput: true,
+  allowEmpty:false,
+  showButtons: false,
+  preferredFormat: "hex",
+  toggleFormats: ["hex", "rgba", "hsla"],
+  alphaVertical: false,
+  hueHorizontal: true,
+  change: function(color){
+    // console.log(color._format);
+    // document.getElementById('output').value = color;
+  },
+  move: function(color){
+    // console.log(color);
+    // document.getElementById('output').value = color;
+  },
+  clickPreview: function(test){
+    // console.log(test);
+    grabColor();
+  }
+
+})
+
+    </script>
   </body>
 </html>
