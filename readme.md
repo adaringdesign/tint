@@ -97,16 +97,6 @@ Build a `Tint.app` file:
 npm run package
 ```
 
-### Regenerate the Icon
-
-~~Create a new `Tint.icns` file by running the following script:~~
-
-This will be removed in next commits as it's no longer needed..
-
-```shell
-./scripts/make-icon
-```
-
 
 
 ## To Do:
