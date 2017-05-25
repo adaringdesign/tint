@@ -105,7 +105,8 @@ npm run package
 - [x] Add input shortcut (`Command(⌘) + V`)
 - [ ] Add preferences dialog
       - [ ] Implement launch at login settings
-- [x] Fix **React-color** modification/~~hack~~
+- [x] ~~Fix **React-color** modification/hack~~
+      - [x] Replace with Tinycolor & Spectrum
 - [ ] (Auto)update from github release
       - [ ] Update notification
       - [ ] Update settings in preferences
