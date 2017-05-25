@@ -4,9 +4,9 @@
 
 A not-so-sucky color picker status bar for OSX.
 
-![](https://raw.githubusercontent.com/adaringdesign/tint/master/Screen.png)
+![](./Screen.png)
 
-A local shortcut to open the color picker is set to `Command(⌘) + C`
+
 
 
 ## Download
@@ -20,8 +20,9 @@ A local shortcut to open the color picker is set to `Command(⌘) + C`
 - Support opacity and hue.
 - Supports HEX, RGBA and HSLA.
 - Local shortcut (`Command(⌘) + C`) to copy color value.
+- Local shortcut (`Command(⌘) + V`) to paste a color value into Tint.
 - Supports Dark Mode.
-- Launch at login
+- Launch at login.
 
 Something else you'd like to see? Create an issue!
 
@@ -39,13 +40,15 @@ By default, Tint will return a `HEX` value. You can toggle between `HEX`, `RGBA`
 
 Once you are happy with your selected color either click the little orb next to the sliders on the left, or hit `Command(⌘) + C` to copy the color value. Tint will quickly display  `⌘V` to let you know that you can past the value anywhere with the command `Command(⌘) + V`
 
+If you already have a color value that you would like to adjust using Tint, simply copy the value and paste it into Tint with `Command(⌘) + V`. If the value is valid, Tint wil recognise, parse and load the value so it can be adjusted.
+
 
 
 ## Development
 
 > Want to help make Tint even better?
 
-Tint is developed using [Electron](http://electron.atom.io/) which enables writing native applications using JavaScript.
+Tint is developed using [Electron](http://electron.atom.io/) and [Node.js](https://nodejs.org/en/) which enables writing native-like applications using JavaScript.
 
 Pre-reqs:
 
@@ -94,41 +97,56 @@ Build a `Tint.app` file:
 npm run package
 ```
 
-### Regenerate the Icon
-
-~~Create a new `Tint.icns` file by running the following script:~~
-
-This will be removed in next commits as it's no longer needed..
-
-```shell
-./scripts/make-icon
-```
-
 
 
 ## To Do:
 
 - [ ] Minor ui fixes
-- [ ] Add input shortcut (`Command(⌘) + V`)
+- [x] Add input shortcut (`Command(⌘) + V`)
 - [ ] Add preferences dialog
       - [ ] Implement launch at login settings
-- [ ] Fix **React-color** modification/~~hack~~
+- [x] ~~Fix **React-color** modification/hack~~
+      - [x] Replace with Tinycolor & Spectrum
 - [ ] (Auto)update from github release
       - [ ] Update notification
       - [ ] Update settings in preferences
 - [ ] Improve initializing speed
 - [ ] Support more color formats/modes
       - [ ] Implement user preferred color format/mode setting
+      - [ ] Implement CMYK support - WIP
+- [ ] Implement an actual color picker to select colors based on pixel values from the screen
 
 
 
 
 ## Known issues
 
-- **React-color** module is modified modification/~~hack~~.
-  - A main dependency is the **React-color** module, in the current release this module includes a custom modification to make it suite my needs. Please keep in mind that this modified version is currently not included within this repo as it resambles a rather dirty hack and needs to get implemented properly first!
+- ~~**React-color** module is modified modification/hack.~~
+  - ~~A main dependency is the **React-color** module, in the current release this module includes a custom modification to make it suite my needs. Please keep in mind that this modified version is currently not included within this repo as it resambles a rather dirty hack and needs to get implemented properly first!~~
 - No blur event triggered on `esc`
   - Reason: no shortcut has been implemented yet.
+
+
+
+
+## Change log
+
+##### 2.1.0: Second beta
+
+- Moved away from React
+- Now build on top of [Tinycolor](https://github.com/bgrins/TinyColor) & [Spectrum](https://github.com/bgrins/spectrum)
+- Added some features:
+  - Pasting color values into Tint (`Command + V`)
+- Tweaked the ui, color spectrum is slightly bigger now
+
+
+
+##### 2.0.1: Initial release - beta
+
+- Updated some dependencies
+- Added some features
+- Changed the ui
+
 
 
 
@@ -136,6 +154,8 @@ This will be removed in next commits as it's no longer needed..
 ## Credits
 
 Updated by Rutger Valk-van de Klundert © 2017. Released under an MIT license.
+
+[Brian Grinstead](https://github.com/bgrins) - [Tinycolor](https://github.com/bgrins/TinyColor) & [Spectrum](https://github.com/bgrins/spectrum)
 
 Started by Dana Woodman in < 2015.
 

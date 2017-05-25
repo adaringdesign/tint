@@ -3,7 +3,7 @@ const path = require('path')
 const electron = require('electron')
 const {moveToApplications} = require('electron-lets-move')
 const settings = require('electron-settings')
-
+const isDev = require('isdev')
 const AutoLaunch = require('auto-launch')
 
 const tintAutoLauncher = new AutoLaunch({
@@ -11,40 +11,32 @@ const tintAutoLauncher = new AutoLaunch({
   path: path.dirname(process.execPath).replace('/Contents/MacOS', '')
 })
 
-// if (!settings.has('tint.autolaunch')){
-//   settings.set('tint.autolaunch', false)
-//   tintAutoLauncher.disable()
-// }
+if (!isDev){
+  if (!settings.has('tint.autolaunch')){
+    settings.set('tint.autolaunch', false)
+    tintAutoLauncher.disable()
+  }
 
-tintAutoLauncher.enable()
+  tintAutoLauncher.enable()
 
-tintAutoLauncher.isEnabled()
-.then(function(isEnabled){
-    if(isEnabled){
-        return;
-    }
-    tintAutoLauncher.enable();
-})
-.catch(function(err){
-    // handle error 
-    console.log(err);
-});
+  tintAutoLauncher.isEnabled().then(function(isEnabled){
+      if(isEnabled){
+          return;
+      }
+      tintAutoLauncher.enable();
+  }).catch(function(err){
+      // handle error 
+      console.log(err);
+  });
+}
 
 const app = require('electron').app
 
 const statusbar = require('./status-bar')
 
-// const globalShortcut = electron.globalShortcut
 const electronLocalshortcut = require('electron-localshortcut')
-// const {webContents} = require('electron')
-
-// TODO: Make this configurable
-const GLOBAL_SHORTCUT = 'Cmd+c'
 
 app.on('ready', () => {
-  console.log( settings.getAll() )
-  console.log(path.basename(process.execPath));
-  // console.log( path.dirname(process.execPath).replace('/Contents/MacOS', '') )
 
   if (!settings.has('tint.moved')){
     settings.set('tint.moved')
@@ -66,29 +58,15 @@ app.on('ready', () => {
   console.log('Application is ready!')
 
   // Hide the dock.
-  if (app.dock) {
-    app.dock.hide()
+  if (!isDev){
+    if (app.dock) {
+      app.dock.hide()
+    }
   }
-
   // Load the status bar.
   const bar = statusbar(app)
 
-  // let win = webContents.getFocusedWebContents()
-
-  // Register the global shortcut
-  // const registrationSuccess = globalShortcut.register(
-  //   GLOBAL_SHORTCUT,
-  //   () => {
-  //     win.send('copy')
-  //   }
-  // )
-
-
   app.on('will-quit', () => {
-
-    // Unregister all shortcuts.
-    // globalShortcut.unregisterAll()
-
 
     electronLocalshortcut.unregisterAll();
 
