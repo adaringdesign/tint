@@ -4,12 +4,42 @@ const path = require('path')
 const electron = require('electron')
 const Positioner = require('electron-positioner')
 
-const isDev = require('isdev')
+let isDev = require('isDev')
+isDev = false;
 
 const electronLocalshortcut = require('electron-localshortcut');
 const {webContents} = require('electron')
 
 const BrowserWindow = electron.BrowserWindow
+/*
+NOTE:
+
+"Freely" moving window example:
+
+electron.app.on('ready', () => {
+  const win = new electron.BrowserWindow({enableLargerThanScreen: true});
+  win.setAlwaysOnTop(true, 'screen-saver');
+});
+
+ToDo:
+Create window as in example above
+Toggle as "picker"
+Bind to mouse position
+Create zoom in view
+Get px color value on "click-event"
+
+Dependencies:
+osx-mouse
+electron-positioner
+https://github.com/andrepolischuk/magnifier
+https://github.com/thdoan/magnify
+
+http://jsfiddle.net/gthomas3/tvth7fqx/ THIS ONE
+http://jsfiddle.net/powerc9000/G39W9/
+https://www.npmjs.com/package/screenshot-desktop
+
+*/
+
 const Menu = electron.Menu
 const Tray = electron.Tray
 
@@ -151,11 +181,17 @@ module.exports = (app) => {
   //     .on('double-click', (e, bounds) => statusbar.toggleWindow(bounds))
   //     .on('right-click', (e, bounds) => statusbar.menu.popup(statusbar.window))
 
+  let clickCount = 0;
+
   statusbar.tray.on('click', (e, bounds) => {
+    clickCount++;
+    console.log(clickCount);
     statusbar.window.isVisible() ? statusbar.window.hide() : statusbar.show(e, bounds)
   })
 
   statusbar.tray.on('double-click', (e, bounds) => {
+    clickCount++;
+    console.log(clickCount);
     statusbar.window.isVisible() ? statusbar.window.hide() : statusbar.show(e, bounds)
   })
 

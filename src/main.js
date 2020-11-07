@@ -3,7 +3,10 @@ const path = require('path')
 const electron = require('electron')
 const {moveToApplications} = require('electron-lets-move')
 const settings = require('electron-settings')
-const isDev = require('isdev')
+
+let isDev = require('isDev')
+isDev = false;
+
 const AutoLaunch = require('auto-launch')
 
 const tintAutoLauncher = new AutoLaunch({
